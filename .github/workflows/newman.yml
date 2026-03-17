@@ -1,0 +1,29 @@
+name: Run API Tests with Newman
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  newman-run:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Install Newman
+        run: npm install -g newman newman-reporter-htmlextra
+
+      - name: Run Postman Collection
+        run: |
+          newman run "PETSSTORE API.postman_collection.json" \
+          -e "PST ENV.postman_environment.json" \
+          -r htmlextra \
+          --reporter-htmlextra-export report.html
+
+      - name: Upload HTML Report
+        uses: actions/upload-artifact@v3
+        with:
+          name: newman-report
+          path: report.html
