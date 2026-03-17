@@ -1,0 +1,272 @@
+{
+  "info": {
+    "_postman_id": "cca3e8a2-0a55-444f-a9bf-bc31ee9ab876",
+    "name": "PETSSTORE API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "46700011",
+    "_collection_link": "https://go.postman.co/collection/46700011-cca3e8a2-0a55-444f-a9bf-bc31ee9ab876?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "USER",
+      "item": [
+        {
+          "name": "CreatWith List",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "let response = pm.response.json();\r",
+                  "pm.test(\"status code is 200\", function(){\r",
+                  "    pm.response.to.have.status(200);\r",
+                  "});\r",
+                  "pm.test(\"response time is less than 2000ms\", function (){\r",
+                  "    pm.expect(pm.response.responseTime).to.be.below(2000);\r",
+                  "});\r",
+                  "pm.test(\"response is an object\", function (){\r",
+                  "    pm.expect(response).to.be.an(\"object\");\r",
+                  "});\r",
+                  "pm.test(\"response to contain code\", function (){ \r",
+                  "    pm.expect(response).to.have.property(\"code\");\r",
+                  "});\r",
+                  "pm.test(\"type field is a string\", function () {\r",
+                  "    pm.expect(response.type).to.be.a(\"string\");\r",
+                  "});\r",
+                  "pm.test(\"type is unknown\", function (){  \r",
+                  "    pm.expect(response.type).to.eql(\"unknown\");\r",
+                  "});\r",
+                  "pm.test(\"message field exist\", function (){ \r",
+                  "    pm.expect(response.message).to.exist;\r",
+                  "});\r",
+                  "pm.test(\"message field is not empty\", function (){\r",
+                  "    pm.expect(response.message).to.not.be.empty;\r",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "[\n  {\n    \"id\": 2,\n    \"username\": \"Brownie doggie\",\n    \"firstName\": \"Brown\",\n    \"lastName\": \"Dog\",\n    \"email\": \"brown_dog@example.com\",\n    \"password\": \"string123\",\n    \"phone\": \"strin07063945560\",\n    \"userStatus\": 1\n  }\n]",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{PST_URL}}/user/createWithList",
+              "host": [
+                "{{PST_URL}}"
+              ],
+              "path": [
+                "user",
+                "createWithList"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get User by Username",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "let response = pm.response.json();\r",
+                  "pm.test(\"Status code is 200\", function () {\r",
+                  "    pm.response.to.have.status(200);\r",
+                  "});\r",
+                  "pm.test(\"Response time is less than 2000ms\", function () {\r",
+                  "    pm.expect(pm.response.responseTime).to.be.below(2000);\r",
+                  "});\r",
+                  "pm.test(\"response is an object\", function () {\r",
+                  "    pm.expect(response).to.be.an(\"object\");\r",
+                  "});\r",
+                  "pm.test(\"id is a number\", function (){\r",
+                  "    pm.expect(response.id).to.be.a(\"number\");\r",
+                  "});\r",
+                  "pm.test(\"username is user1\", function (){\r",
+                  "    pm.expect(response.username).to.eql(\"user1\");\r",
+                  "});\r",
+                  "pm.test(\"firstName is John\", function (){\r",
+                  "    pm.expect(response.firstName).to.eql(\"John\");\r",
+                  "});\r",
+                  "pm.test(\"lastName is Doe\", function (){\r",
+                  "    pm.expect(response.lastName).to.eql(\"Doe\");\r",
+                  "});\r",
+                  "pm.test(\"email is john@example.com\", function (){\r",
+                  "    pm.expect(response.email).to.eql(\"john@example.com\");\r",
+                  "});\r",
+                  "pm.test(\"password is secret\", function (){\r",
+                  "    pm.expect(response.password).to.eql(\"secret\");\r",
+                  "});\r",
+                  "pm.test(\"response contains phone\", function (){\r",
+                  "    pm.expect(response).to.have.property(\"phone\");\r",
+                  "});\r",
+                  "pm.test(\"userStatus is 1\", function (){\r",
+                  "    pm.expect(response.userStatus).to.eql(1);\r",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{PST_URL}}/user/user1",
+              "host": [
+                "{{PST_URL}}"
+              ],
+              "path": [
+                "user",
+                "user1"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Update User",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "let response = pm.response.json();\r",
+                  "pm.test(\"status code is 200\", function(){\r",
+                  "    pm.response.to.have.status(200);\r",
+                  "});\r",
+                  "pm.test(\"response time is less than 2000ms\", function (){\r",
+                  "    pm.expect(pm.response.responseTime).to.be.below(2000);\r",
+                  "});\r",
+                  "pm.test(\"response is an object\", function (){\r",
+                  "    pm.expect(response).to.be.an(\"object\");\r",
+                  "});\r",
+                  "pm.test(\"response to contain code\", function (){ \r",
+                  "    pm.expect(response).to.have.property(\"code\");\r",
+                  "});\r",
+                  "pm.test(\"type field is a string\", function () {\r",
+                  "    pm.expect(response.type).to.be.a(\"string\");\r",
+                  "});\r",
+                  "pm.test(\"type is unknown\", function (){  \r",
+                  "    pm.expect(response.type).to.eql(\"unknown\");\r",
+                  "});\r",
+                  "pm.test(\"message field exist\", function (){ \r",
+                  "    pm.expect(response.message).to.exist;\r",
+                  "});\r",
+                  "pm.test(\"message field is not empty\", function (){\r",
+                  "    pm.expect(response.message).to.not.be.empty;\r",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"id\": 2,\n    \"username\": \"Brownie doggie\",\n    \"firstName\": \"Brown\",\n    \"lastName\": \"Dog\",\n    \"email\": \"brown_dog@example.com\",\n    \"password\": \"string123\",\n    \"phone\": \"strin07063945560\",\n    \"userStatus\": 1\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://petstore.swagger.io/v2/user/brownie%20doggie",
+              "protocol": "https",
+              "host": [
+                "petstore",
+                "swagger",
+                "io"
+              ],
+              "path": [
+                "v2",
+                "user",
+                "brownie%20doggie"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Login User",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "https://petstore.swagger.io/v2/user/login?username=user1&password=secret",
+              "protocol": "https",
+              "host": [
+                "petstore",
+                "swagger",
+                "io"
+              ],
+              "path": [
+                "v2",
+                "user",
+                "login"
+              ],
+              "query": [
+                {
+                  "key": "username",
+                  "value": "user1"
+                },
+                {
+                  "key": "password",
+                  "value": "secret"
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ]
+}
